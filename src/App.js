@@ -7,16 +7,16 @@ import StaticTimePicker from "./Component/StaticTimePicker";
 
 function App() {
     return (
-      <div className={"App"}>
-      <PrimarySearchAppBar/>
-        <SignUpUser/>
-      <Routes>
-          <Route path={'/'} component={<SignUpUser/>} />
-          <Route path={'/demo'} component={<Demo/>}/>
-          <Route path={'/staticTimePicker'} component={<StaticTimePicker/>}/>
+        <div className={"App"}>
+            <PrimarySearchAppBar/>
+            <SignUpUser/>
+            <Routes>
+                <Route path={'/'} component={<SignUpUser/>} />
+                <Route path={'/demo'} component={<Demo/>}/>
+                <Route path={'/staticTimePicker'} component={<StaticTimePicker/>}/>
 
-      </Routes>
-      </div>
+            </Routes>
+        </div>
     );
 }
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import  { useState} from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -55,7 +54,7 @@ export default function SignUp() {
         })
         const res = await rowRes.json();
         if(res.insertId === 1){
-            navigate('./demo')
+            navigate('/demo')
         }
         console.log('response from server', res)
     };
