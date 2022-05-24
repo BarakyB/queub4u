@@ -35,6 +35,7 @@ function DashBoardUser(props) {
     );
 }
 
+
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -54,6 +55,7 @@ const AppBar = styled(MuiAppBar, {
         }),
     }),
 }));
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -89,6 +91,7 @@ function DashboardContent() {
         setOpen(!open);
     };
 
+
     return (
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: 'flex' }}>
@@ -118,7 +121,10 @@ function DashboardContent() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Dashboard
+                            Hi     {'users.id' }
+
+
+
                         </Typography>
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
