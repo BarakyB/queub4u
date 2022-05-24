@@ -53,7 +53,8 @@ export default function SignUp() {
             body: JSON.stringify({user})
         })
         const res = await rowRes.json();
-        if(res.insertId === 1){
+        if(res.affectedRows === 1){
+            localStorage.setItem('id',res.insertId);
             navigate('/demo')
         }
         console.log('response from server', res)
