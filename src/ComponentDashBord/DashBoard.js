@@ -86,10 +86,22 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function DashboardContent() {
+    const [users, setUsers] = React.useState([{"id":-1}]);
+
+    const getUsers = async(user) => {
+        const rawData = await fetch('http://localhost:5000/users');
+        const data = await rawData.json();
+        setUsers([{"id":-1}, ...data])
+    }
+    React.useEffect(()=>{
+        getUsers();
+    }, [])
+
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
     };
+
 
 
     return (
@@ -121,8 +133,13 @@ function DashboardContent() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Hi     {'users.id' }
+                            Hi
+                            <h1 id={'user'} onChange={(event)=>getUsers(event.target)}>
+                                {
+                                    users.map( r=>  <option key={r.id} value={r.email}>{r.firstName}</option>)
+                                }
 
+                            </h1>
 
 
                         </Typography>

@@ -24,7 +24,7 @@ export default function ResponsiveDateTimePickers() {
         setRoles([{"idrole":-1,"name":"select a role"}, ...data])
     }
 
-    const getWorkers = async(role) => {
+    const getWorkers = async(U) => {
         const rawData = await fetch('http://localhost:5000/workers?'+'role='+role);
         const data = await rawData.json();
         setWorkers([{"idworkers":-1,"name":"select a worker"}, ...data])
