@@ -17,12 +17,15 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { MainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import {Route, Routes, useNavigate} from "react-router-dom";
+import ResponsiveDateTimePickers from "../Component/ResponsiveDateTimePickers";
 
 function DashBoardUser(props) {
+
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'DashBoardUser © '}
@@ -87,9 +90,10 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
     const [users, setUsers] = React.useState([{"id":-1}]);
-
+    const navigate = useNavigate();
     const getUsers = async(user) => {
-        const rawData = await fetch('http://localhost:5000/users');
+        const id = localStorage.getItem('id')
+        const rawData = await fetch('http://localhost:5000/users/'+id);
         const data = await rawData.json();
         setUsers([{"id":-1}, ...data])
     }
@@ -97,6 +101,10 @@ function DashboardContent() {
         getUsers();
     }, [])
 
+    const createAppointment = () => {
+        navigate('/dashboard/appointment')
+       // alert("ok");
+    }
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -126,7 +134,7 @@ function DashboardContent() {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography
+                        {/*<Typography
                             component="h1"
                             variant="h6"
                             color="inherit"
@@ -134,15 +142,12 @@ function DashboardContent() {
                             sx={{ flexGrow: 1 }}
                         >
                             Hi
-                            <h1 id={'user'} onChange={(event)=>getUsers(event.target)}>
-                                {
-                                    users.map( r=>  <option key={r.id} value={r.email}>{r.firstName}</option>)
-                                }
-
-                            </h1>
-
-
-                        </Typography>
+                           <div id={'user'} onChange={(event)=>getUsers(event.target)}>
+                          {
+                                  users.map( r=>  <option key={r.id} value={r.email}>{r.firstName}</option>)
+                               }
+                         </div>
+                        </Typography>*/}
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
                                 <NotificationsIcon />
@@ -165,7 +170,7 @@ function DashboardContent() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        {mainListItems}
+                        <MainListItems click={createAppointment}/>
                         <Divider sx={{ my: 1 }} />
                         {secondaryListItems}
                     </List>
@@ -183,49 +188,60 @@ function DashboardContent() {
                     }}
                 >
                     <Toolbar />
-                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                        <Grid container spacing={3}>
-                            {/* Chart */}
-                            <Grid item xs={12} md={8} lg={9}>
-                                <Paper
-                                    sx={{
-                                        p: 2,
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        height: 240,
-                                    }}
-                                >
-                                    <Chart />
-                                </Paper>
-                            </Grid>
-                            {/* Recent Deposits */}
-                            <Grid item xs={12} md={4} lg={3}>
-                                <Paper
-                                    sx={{
-                                        p: 2,
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        height: 240,
-                                    }}
-                                >
-                                    <Deposits />
-                                </Paper>
-                            </Grid>
-                            {/* Recent Orders */}
-                            <Grid item xs={12}>
-                                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    <Orders />
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                        <DashBoardUser sx={{ pt: 4 }} />
-                    </Container>
+
+                    <div></div>
+                    <Routes>
+                        <Route path={'appointment'}  element={<ResponsiveDateTimePickers/>}/>
+                        <Route path={'/'}  element={<Content/>}/>
+                    </Routes>
                 </Box>
+
             </Box>
         </ThemeProvider>
     );
 }
 
+function Content(){
+    return(
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacing={3}>
+                {/* Chart */}
+                <Grid item xs={12} md={8} lg={9}>
+                    <Paper
+                        sx={{
+                            p: 2,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            height: 240,
+                        }}
+                    >
+                        <Chart />
+                    </Paper>
+                </Grid>
+                {/* Recent Deposits */}
+                <Grid item xs={12} md={4} lg={3}>
+                    <Paper
+                        sx={{
+                            p: 2,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            height: 240,
+                        }}
+                    >
+                        <Deposits />
+                    </Paper>
+                </Grid>
+                {/* Recent Orders */}
+                <Grid item xs={12}>
+                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                        <Orders />
+                    </Paper>
+                </Grid>
+            </Grid>
+            <DashBoardUser sx={{ pt: 4 }} />
+        </Container>
+    )
+}
 export default function DashBoard() {
     return <DashboardContent />;
 }

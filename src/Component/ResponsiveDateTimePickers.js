@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 export default function ResponsiveDateTimePickers() {
     const [value, setValue] = React.useState(new Date('2022-01-01T00:00:00.000Z'));
     const [roles, setRoles] = React.useState([{"idrole":-1,"name":"select a role"}]);
-    const [workers, setWorkers] = React.useState([{"idworkers":-1,"name":"select a worker"}]);
+    const [workers, setWorkers] = React.useState([{"idworkers":-1,"firstname":"select a worker", lastname:"", imagework:""}]);
 
 
     const saveTheDate = ()=>{
@@ -24,15 +24,19 @@ export default function ResponsiveDateTimePickers() {
         setRoles([{"idrole":-1,"name":"select a role"}, ...data])
     }
 
-    const getWorkers = async(U) => {
+    const getWorkers = async(role) => {
         const rawData = await fetch('http://localhost:5000/workers?'+'role='+role);
         const data = await rawData.json();
-        setWorkers([{"idworkers":-1,"name":"select a worker"}, ...data])
+        setWorkers([ ...data])
     }
 
     React.useEffect(()=>{
-        getRoles();
+        getWorkers(2);
     }, [])
+
+    const selectWorker = (event) => {
+        alert(event.target.id)
+    }
     return (
         <div>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -49,19 +53,12 @@ export default function ResponsiveDateTimePickers() {
                 </Stack>
 
             </LocalizationProvider>
-            <label htmlFor={'role'}>Select treatment</label>
-            <select id={'role'} onChange={(event)=>getWorkers(event.target.value)}>
+
+            <label htmlFor={'workers'}>Select a worker</label>
                 {
-                    roles.map( r=>  <option key={r.idrole} value={r.idrole}>{r.name}</option>)
+                    workers.map( r=>  <div onClick={selectWorker} key={r.idworkers} id={r.idworkers} > {r.firstname + ' ' + r.lastname + ''+ r.imagework}</div>)
                 }
 
-            </select>
-            <label htmlFor={'workers'}>Select a worker</label>
-            <select id={'workers'}>
-                {
-                    workers.map( r=>  <option key={r.idworkers} value={r.idworkers}>{r.firstname + ' ' + r.lastname}</option>)
-                }
-            </select>
             <label htmlFor={'range'}>Select a range of time</label>
             <input type={'number'} id={'range'} />
             <button onClick={saveTheDate}> Save the appointment</button>

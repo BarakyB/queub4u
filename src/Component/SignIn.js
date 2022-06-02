@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useNavigate} from "react-router-dom";
 
 
 function SignInUser(props) {
@@ -31,15 +32,44 @@ const theme = createTheme();
 
 
 
-export default function SignIn() {
-    const handleSubmit = (event) => {
+export default  function SignIn() {
+    const navigate = useNavigate();
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get('email'),
             password: data.get('password'),
         });
+        const userIn = {
+            email: data.get('email'),
+            password: data.get('password'),
+        }
+
+        const rowRes = await fetch( "http://127.0.0.1:5000/auth", {
+            method:'POST',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({userIn})
+        })
+
+        console.log(rowRes);
+        const res = await rowRes.json();
+        console.log(res);//בדיקות על הconsole
+
+        if(rowRes.ok === true){
+            localStorage.setItem('id',res[0].id);
+            navigate('/dashboard')
+        }
+        else{
+            alert(res.msg)
+        }
+        console.log('response from server', res)
     };
+
+
+
+
+
 
     return (
         <ThemeProvider theme={theme}>
