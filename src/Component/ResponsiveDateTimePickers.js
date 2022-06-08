@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 
 export default function ResponsiveDateTimePickers() {
     const [value, setValue] = React.useState(new Date('2022-01-01T00:00:00.000Z'));
-    const [roles, setRoles] = React.useState([{"idrole":-1,"name":"select a role"}]);
+   const [roles, setRoles] = React.useState([{"idrole":-1,"name":"select a role"}]);
     const [workers, setWorkers] = React.useState([{"idworkers":-1,"firstname":"select a worker", lastname:"", imagework:""}]);
 
 
@@ -56,6 +56,7 @@ export default function ResponsiveDateTimePickers() {
 
             <label htmlFor={'workers'}>Select a worker</label>
                 {
+
                     workers.map( r=>  <div onClick={selectWorker} key={r.idworkers} id={r.idworkers} > {r.firstname + ' ' + r.lastname + ''+ r.imagework}</div>)
                 }
 

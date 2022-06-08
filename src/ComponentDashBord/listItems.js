@@ -5,16 +5,16 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
+import ContentCutIcon from '@mui/icons-material/ContentCut';
+import SwipeRightIcon from '@mui/icons-material/SwipeRight';
+import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import {Grid} from "@mui/material";
 
 export const MainListItems = (props) => {
     return (
         <React.Fragment>
-            <ListItemButton>
+                <ListItemButton onClick={props.clickDash}>
                 <ListItemIcon>
                     <DashboardIcon/>
                 </ListItemIcon>
@@ -26,23 +26,23 @@ export const MainListItems = (props) => {
                 </ListItemIcon>
                 <ListItemText primary="Orders"/>
             </ListItemButton>
-            <ListItemButton onClick={props.click}>
+            <ListItemButton onClick={props.clickHair}>
                 <ListItemIcon>
-                    <PeopleIcon/>
+                    <ContentCutIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Hair Removal"/>
             </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <BarChartIcon/>
+            <ListItemButton onClick={props.clickPedicure}>
+            <ListItemIcon>
+                    <SwipeRightIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Reports"/>
+                <ListItemText primary="Pedicure Manicure"/>
             </ListItemButton>
-            <ListItemButton>
-                <ListItemIcon>
-                    <LayersIcon/>
+            <ListItemButton onClick={props.clickFacial}>
+            <ListItemIcon>
+                    <FaceRetouchingNaturalIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Integrations"/>
+                <ListItemText primary="Facial Treatment"/>
             </ListItemButton>
         </React.Fragment>
     )

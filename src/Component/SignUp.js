@@ -57,6 +57,9 @@ export default function SignUp() {
             localStorage.setItem('id',res.insertId);
             navigate('./dashboard')
         }
+        else{
+            alert(res.msg)
+        }
         console.log('response from server', res)
     };
 

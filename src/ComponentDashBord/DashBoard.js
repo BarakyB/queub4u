@@ -101,9 +101,23 @@ function DashboardContent() {
         getUsers();
     }, [])
 
+    const createDashBoard = () => {
+        navigate('/dashboard')
+         alert("ok");
+    }
+
     const createAppointment = () => {
         navigate('/dashboard/appointment')
-       // alert("ok");
+       alert("ok");
+    }
+    const createPedicure = () => {
+        navigate('/dashboard/appointment')
+        alert("U R THE REAL MAN");
+    }
+
+    const createFacial = () => {
+        navigate('/dashboard/appointment')
+        alert("U R THE REAL WOMEN");
     }
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -170,7 +184,13 @@ function DashboardContent() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        <MainListItems click={createAppointment}/>
+                        <MainListItems
+                            clickDash={createDashBoard}
+                            clickHair={createAppointment}
+                            clickPedicure={createPedicure}
+                            clickFacial={createFacial}
+
+                        />
                         <Divider sx={{ my: 1 }} />
                         {secondaryListItems}
                     </List>
