@@ -23,6 +23,9 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import {Route, Routes, useNavigate} from "react-router-dom";
 import ResponsiveDateTimePickers from "../Component/ResponsiveDateTimePickers";
+import ResponsiveWorker from "../Component/ResponsiveWorker";
+import WorkerImage from "../Component/WorkerImage";
+
 
 function DashBoardUser(props) {
 
@@ -107,11 +110,11 @@ function DashboardContent() {
     }
 
     const createAppointment = () => {
-        navigate('/dashboard/appointment')
+        navigate('/dashboard/resworker')
        alert("ok");
     }
     const createPedicure = () => {
-        navigate('/dashboard/appointment')
+        navigate('/dashboard/workerimg')
         alert("U R THE REAL MAN");
     }
 
@@ -148,9 +151,9 @@ function DashboardContent() {
                         >
                             <MenuIcon />
                         </IconButton>
-                        {/*<Typography
+                        <Typography
                             component="h1"
-                            variant="h6"
+                            variant="overline"
                             color="inherit"
                             noWrap
                             sx={{ flexGrow: 1 }}
@@ -158,10 +161,10 @@ function DashboardContent() {
                             Hi
                            <div id={'user'} onChange={(event)=>getUsers(event.target)}>
                           {
-                                  users.map( r=>  <option key={r.id} value={r.email}>{r.firstName}</option>)
+                                  users.map( r=> <option key={r.id} value={r.email}>{r.firstName}</option>)
                                }
                          </div>
-                        </Typography>*/}
+                        </Typography>
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
                                 <NotificationsIcon />
@@ -211,6 +214,8 @@ function DashboardContent() {
 
                     <div></div>
                     <Routes>
+                        <Route path={'workerimg'}  element={<WorkerImage/>}/>
+                        <Route path={'resworker'}  element={<ResponsiveWorker/>}/>
                         <Route path={'appointment'}  element={<ResponsiveDateTimePickers/>}/>
                         <Route path={'/'}  element={<Content/>}/>
                     </Routes>

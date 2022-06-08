@@ -6,9 +6,10 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker';
 import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 
 export default function ResponsiveDateTimePickers() {
-    const [value, setValue] = React.useState(new Date('2022-01-01T00:00:00.000Z'));
+    const [value, setValue] = React.useState(new Date('2022-09-01T00:00:00.000Z'));
    const [roles, setRoles] = React.useState([{"idrole":-1,"name":"select a role"}]);
     const [workers, setWorkers] = React.useState([{"idworkers":-1,"firstname":"select a worker", lastname:"", imagework:""}]);
 
@@ -41,6 +42,8 @@ export default function ResponsiveDateTimePickers() {
         <div>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Stack spacing={3}>
+                    <br/>
+                    <Container maxWidth="sm">
 
                     <DateTimePicker
                         label="Responsive"
@@ -50,6 +53,7 @@ export default function ResponsiveDateTimePickers() {
                             setValue(newValue);
                         }}
                     />
+                    </Container>
                 </Stack>
 
             </LocalizationProvider>
