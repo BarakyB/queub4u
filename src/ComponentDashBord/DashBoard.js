@@ -194,7 +194,7 @@ function DashboardContent() {
                             clickFacial={createFacial}
 
                         />
-                        <Divider sx={{ my: 1 }} />
+                    <Divider sx={{ my: 1 }} />
                         {secondaryListItems}
                     </List>
                 </Drawer>
