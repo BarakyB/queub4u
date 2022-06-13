@@ -5,6 +5,7 @@ import SignInUser from "./Component/SignIn";
 import ResponsiveDateTimePickers from "./Component/ResponsiveDateTimePickers";
 import ResponsiveWorker from "./Component/ResponsiveWorker";
 import WorkerImage from "./Component/WorkerImage";
+import WeekSelection from "./Component/WeekSelection";
 
 
 import Demo from './Demo';
@@ -14,6 +15,7 @@ function App() {
     return (
         <div className={"App"}>
             <Routes>
+                <Route path={'/WeekSelection'}  element={<WeekSelection/>}/>
                 <Route path={'/WorkerImage'}  element={<WorkerImage/>}/>
                 <Route path={'/ResponsiveWorker'}  element={<ResponsiveWorker/>}/>
                 <Route path={'/ResponsiveDateTimePickers'}  element={<ResponsiveDateTimePickers/>}/>
