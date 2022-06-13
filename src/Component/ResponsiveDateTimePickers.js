@@ -58,11 +58,6 @@ export default function ResponsiveDateTimePickers() {
 
             </LocalizationProvider>
 
-            <label htmlFor={'workers'}>Select a worker</label>
-                {
-
-                    workers.map( r=>  <div onClick={selectWorker} key={r.idworkers} id={r.idworkers} > {r.firstname + ' ' + r.lastname + ''+ r.imagework}</div>)
-                }
 
             <label htmlFor={'range'}>Select a range of time</label>
             <input type={'number'} id={'range'} />
