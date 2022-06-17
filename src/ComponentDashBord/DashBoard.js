@@ -108,21 +108,21 @@ function DashboardContent() {
 
     const createDashBoard = () => {
         navigate('/dashboard')
-         alert("ok");
+         alert("dashboard");
     }
 
     const createAppointment = () => {
         navigate('/dashboard/resworker')
-       alert("ok");
+       alert("resworker");
     }
     const createPedicure = () => {
         navigate('/dashboard/workerimg')
-        alert("U R THE REAL MAN");
+        alert(" workerimg");
     }
 
     const createFacial = () => {
         navigate('/dashboard/appointment')
-        alert("U R THE REAL WOMEN");
+        alert(" appointment");
     }
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
